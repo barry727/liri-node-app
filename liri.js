@@ -9,12 +9,10 @@ var action = input[2];
 var inputs = input[3];
 var moment = require('moment');
 
-
-
 switch (action) {
 
     case 'concert-this':
-        bandsInTown(parameter);
+        concerts(inputs);
         break;
 
     case "spotify-this-song":
@@ -29,8 +27,6 @@ switch (action) {
         doit();
         break;
 };
-
-
 
 function concerts(inputs) {
     var query = `https://rest.bandsintown.com/artists/${inputs}/events?app_id=codingbootcamp`
@@ -56,9 +52,6 @@ function concerts(inputs) {
 
 }
 
-
-
-
 function movie(inputs) {
 
     var queryUrl = "http://www.omdbapi.com/?t=" + inputs + "&y=&plot=short&apikey=40e9cece";
@@ -81,8 +74,6 @@ function movie(inputs) {
     });
 };
 
-
-
 function spotify(inputs) {
 
     var spotify = new Spotify(keys.spotify);
@@ -103,7 +94,6 @@ function spotify(inputs) {
     });
 }
 
-
 function doit() {
     fs.readFile('random.txt', "utf8", function (error, data) {
 
@@ -122,8 +112,6 @@ function doit() {
             var movie_name = dataArr[1].slice(1, -1);
             movie(movie_name);
         }
-
     });
-
 };
 
